@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MENU</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #faf5ee;
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      padding: clamp(1.5rem, 5vw, 4rem) clamp(1.2rem, 6vw, 5rem);
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    .header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 3px solid #2c1a0e;
+    }
+    .header h1 {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: clamp(5rem, 18vw, 10rem);
+      letter-spacing: 0.05em;
+      color: #2c1a0e;
+      line-height: 1;
+      font-weight: 400;
+    }
+
+    /* WRAPPER */
+    .menu-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    /* CATEGORY */
+    .category {
+      margin-bottom: 2.5rem;
+      border-top: 2px solid #2c1a0e;
+      padding-top: 1.5rem;
+    }
+
+    .category-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      text-align: left;
+    }
+    .category-toggle:focus { outline: none; }
+
+    .category-title {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      letter-spacing: 0.12em;
+      color: #2c1a0e;
+      font-weight: 400;
+    }
+
+    .category-icon {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 1.4rem;
+      color: #8b5e3c;
+      display: inline-block;
+      transition: transform 0.35s ease;
+      line-height: 1;
+    }
+    .category-icon.open { transform: rotate(45deg); }
+
+    /* ITEMS LIST */
+    .items-list {
+      display: none;
+      margin-top: 1.2rem;
+      padding-left: 1rem;
+      border-left: 1.5px solid #c9a882;
+    }
+    .items-list.open { display: block; }
+
+    /* ITEM */
+    .item { margin-bottom: 0.3rem; }
+
+    .item-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.55rem 0.8rem;
+      text-align: left;
+      border-radius: 3px;
+      transition: background 0.2s;
+    }
+    .item-toggle:focus { outline: none; }
+    .item-toggle:hover { background: #f0e4d4; }
+    .item-toggle.active { background: #ede0d0; }
+
+    .item-name {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+      letter-spacing: 0.08em;
+      color: #2c1a0e;
+      font-weight: 400;
+    }
+
+    /* DETAIL CARD */
+    .item-detail {
+      display: none;
+      margin: 0.4rem 0.8rem 0.8rem 0.8rem;
+      padding: 1rem 1.2rem;
+      background: #f5ece0;
+      border-left: 3px solid #8b5e3c;
+      border-radius: 2px;
+    }
+    .item-detail.open { display: block; }
+
+    /* IMAGE ZONE */
+    .img-zone { margin-bottom: 1rem; }
+
+    .img-upload-label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 120px;
+      border: 1.5px dashed #c9a882;
+      border-radius: 3px;
+      cursor: pointer;
+      gap: 0.4rem;
+      background: #faf5ee;
+      transition: background 0.2s;
+    }
+    .img-upload-label:hover { background: #f0e4d4; }
+
+    .img-upload-icon {
+      font-size: 1.6rem;
+      color: #c9a882;
+    }
+
+    .img-upload-text {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      color: #a07850;
+    }
+
+    .img-preview-wrap {
+      position: relative;
+      width: 100%;
+      display: none;
+    }
+    .img-preview-wrap.has-image { display: block; }
+
+    .img-preview {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 3px;
+      display: block;
+    }
+
+    .img-replace-label {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(44, 26, 14, 0.7);
+      color: #faf5ee;
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      padding: 4px 10px;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .img-replace-label:hover { background: rgba(44, 26, 14, 0.9); }
+
+    input[type="file"] { display: none; }
+
+    /* DESCRIPTION / INGREDIENTS */
+    .field-label {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      color: #8b5e3c;
+      display: block;
+      margin-bottom: 0.25rem;
+      text-transform: uppercase;
+    }
+
+    .field-desc {
+      margin-bottom: 0.7rem;
+    }
+
+    .field-text-desc {
+      font-family: Georgia, serif;
+      font-size: 0.88rem;
+      color: #3d2010;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .field-text-ing {
+      font-family: Georgia, serif;
+      font-size: 0.85rem;
+      color: #3d2010;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>MENU</h1>
+  </div>
+
+  <div class="menu-wrap" id="menu-root"></div>
+
+  <script>
+    const menuData = [
+      {
+        id: "salads", title: "САЛАТЫ",
+        items: [
+          { name: "ЦЕЗАРЬ", desc: "Классический салат с хрустящими листьями романо, гренками и пармезаном", ingredients: "Романо, пармезан, гренки, анчоусы, соус цезарь, лимон" },
+          { name: "ОЛИВЬЕ", desc: "Традиционный русский салат с варёными овощами и колбасой", ingredients: "Картофель, морковь, горошек, яйца, колбаса, майонез, огурцы" },
+          { name: "КРАБОВЫЙ САЛАТ", desc: "Нежный салат с крабовыми палочками и свежей кукурузой", ingredients: "Крабовые палочки, кукуруза, яйца, рис, майонез" },
+          { name: "КОУЛ-СЛОУ", desc: "Американский капустный салат с лёгкой кремовой заправкой", ingredients: "Белокочанная капуста, морковь, майонез, уксус, сахар" },
+          { name: "САЛАТ С ТУНЦОМ", desc: "Свежий салат с консервированным тунцом и овощами", ingredients: "Тунец, огурцы, помидоры, лук, оливковое масло, лимон" },
+          { name: "САЛАТ ЗЕЛЕНЫЙ", desc: "Лёгкий микс из свежей зелени с авторской заправкой", ingredients: "Романо, руккола, шпинат, огурцы, оливковое масло, лимон" },
+          { name: "САЛАТ С ХРУСТЯЩИМ РИСОМ", desc: "Оригинальный салат с обжаренным хрустящим рисом", ingredients: "Рис, авокадо, огурцы, кунжут, соевый соус, имбирь" },
+          { name: "САЛАТ БИГ-МАК", desc: "Бургерный салат в стиле культового сэндвича", ingredients: "Говяжий фарш, листья айсберга, помидоры, лук, сыр, соус биг-мак" },
+          { name: "КАРТОФЕЛЬНЫЙ САЛАТ", desc: "Сытный картофельный салат с зеленью и пикантной заправкой", ingredients: "Картофель, зелёный лук, укроп, горчица, майонез, яйца" },
+          { name: "САЛАТ КАЛИФОРНИЯ", desc: "Свежий калифорнийский салат с авокадо и морепродуктами", ingredients: "Авокадо, крабовые палочки, огурцы, рис, кунжут, соевый соус" },
+          { name: "МЕКСИКАНСКИЙ", desc: "Яркий салат с фасолью, кукурузой и острой заправкой", ingredients: "Фасоль, кукуруза, помидоры, перец, кинза, лайм, специи" },
+          { name: "ОГУРЦЫ ФЕТА", desc: "Освежающий греческий салат с хрустящими огурцами", ingredients: "Огурцы, сыр фета, мята, оливковое масло, чёрный перец" },
+          { name: "ЛЕТНЯЯ КЛАССИКА", desc: "Классический летний салат из свежих сезонных овощей", ingredients: "Помидоры, огурцы, болгарский перец, лук, зелень, масло" },
+          { name: "САЛАТ С КУКУРУЗОЙ", desc: "Сытный салат с сочной кукурузой и хрустящими крутонами", ingredients: "Кукуруза, пекинская капуста, морковь, крутоны, майонез" },
+          { name: "МАЛОСОЛЬНЫЕ ОВОЩИ", desc: "Хрустящие слабосолёные овощи домашнего приготовления", ingredients: "Огурцы, помидоры, чеснок, укроп, соль, сахар, уксус" },
+        ]
+      },
+      {
+        id: "soups", title: "СУПЫ",
+        items: [
+          { name: "КУРИНЫЙ", desc: "Нежный домашний куриный суп с лапшой и зеленью", ingredients: "Куриное филе, лапша, морковь, лук, сельдерей, укроп" },
+          { name: "СЫРНЫЙ КРЕМ-СУП", desc: "Бархатистый крем-суп с плавленым сыром и гренками", ingredients: "Плавленый сыр, картофель, лук, сливки, гренки, зелень" },
+          { name: "ОВОЩНОЙ КРЕМ-СУП", desc: "Нежный крем-суп из сезонных овощей с травами", ingredients: "Тыква/кабачок, лук, морковь, сливки, специи, тимьян" },
+          { name: "БОРЩ", desc: "Традиционный украинский борщ на насыщенном мясном бульоне", ingredients: "Говядина, свёкла, капуста, картофель, морковь, томатная паста, сметана" },
+        ]
+      },
+      {
+        id: "hot", title: "ГОРЯЧЕЕ",
+        items: [
+          { name: "КУРИНАЯ ЗАПЕКАНКА", desc: "Сочная запеканка из куриного филе с овощами и сыром", ingredients: "Куриное филе, сыр, сметана, лук, специи, зелень" },
+          { name: "ЗАПЕКАНКА С ФАРШЕМ", desc: "Сытная запеканка из мясного фарша с картофелем", ingredients: "Говяжий фарш, картофель, лук, сыр, яйца, специи" },
+          { name: "ЗАПЕКАНКА ЖУЛЬЕН", desc: "Классический жульен с грибами и курицей под сырной корочкой", ingredients: "Курица, шампиньоны, лук, сливки, сыр, мускатный орех" },
+          { name: "КУРИЦА В МЕДОВО-ГОРЧИЧНОМ СОУСЕ", desc: "Нежная курица в ароматном медово-горчичном маринаде", ingredients: "Куриное филе, мёд, горчица, чеснок, тимьян, масло" },
+          { name: "КУРИЦА В СМЕТАННОМ СОУСЕ", desc: "Мягкая курица тушёная в густом сметанном соусе", ingredients: "Куриное филе, сметана, лук, чеснок, укроп, специи" },
+          { name: "СВИНИНА С ОВОЩАМИ ТЕРИЯКИ", desc: "Сочная свинина с овощами в японском соусе терияки", ingredients: "Свинина, болгарский перец, брокколи, соус терияки, кунжут" },
+          { name: "ЗАПЕЧЕНЫЙ КАРТОФЕЛЬ С КУРИЦЕЙ", desc: "Аппетитный запечённый картофель с куриным филе и специями", ingredients: "Картофель, куриное филе, розмарин, чеснок, оливковое масло" },
+          { name: "ГУЛЯШ", desc: "Классический венгерский гуляш из тушёной говядины", ingredients: "Говядина, лук, томатная паста, паприка, чеснок, специи" },
+          { name: "ЖАРКОЕ СО СВИНИНОЙ", desc: "Сытное домашнее жаркое с картофелем и свининой", ingredients: "Свинина, картофель, лук, морковь, томатная паста, лавровый лист" },
+          { name: "ЖУЛЬЕН", desc: "Классический жульен с грибами в сливочном соусе", ingredients: "Шампиньоны, лук, сливки, сыр, масло, мускатный орех" },
+          { name: "ГРЕЧКА С ОВОЩАМИ И КУРИЦЕЙ", desc: "Полезная гречка с куриным филе и сезонными овощами", ingredients: "Гречка, куриное филе, морковь, лук, перец, зелень" },
+          { name: "КУРИНАЯ ГРУДКА В КЛЯРЕ", desc: "Хрустящая куриная грудка в золотистом кляре", ingredients: "Куриная грудка, яйца, мука, панировочные сухари, специи" },
+          { name: "ОХОТНИЧЬИ КОЛБАСКИ С КАРТОФЕЛЕМ", desc: "Сочные охотничьи колбаски с запечённым картофелем", ingredients: "Охотничьи колбаски, картофель, горчица, розмарин, масло" },
+          { name: "РУБЛЕННЫЕ КОТЛЕТЫ", desc: "Сочные котлеты из рубленого мяса с зеленью", ingredients: "Говядина, лук, яйца, зелень, специи, панировочные сухари" },
+          { name: "КОНВЕРТИКИ ИЗ ФАРША С СЫРОМ", desc: "Хрустящие конвертики из теста с сырно-мясной начинкой", ingredients: "Фарш, сыр, тесто слоёное, лук, чеснок, специи" },
+          { name: "КУРИНЫЕ КОТЛЕТЫ", desc: "Нежные куриные котлеты из рубленого филе", ingredients: "Куриное филе, лук, яйца, хлеб, сметана, специи" },
+          { name: "ЗАПЕЧЕНАЯ КАРТОШКА С БЕКОНОМ", desc: "Ароматная картошка запечённая с хрустящим беконом", ingredients: "Картофель, бекон, чеснок, розмарин, оливковое масло, сыр" },
+          { name: "КУСКУС С ТУНЦОМ", desc: "Лёгкий средиземноморский кускус с тунцом и овощами", ingredients: "Кускус, тунец, помидоры, огурцы, зелень, оливковое масло, лимон" },
+          { name: "КИШ С НАЧИНКАМИ", desc: "Французский открытый пирог с разнообразными начинками", ingredients: "Тесто песочное, яйца, сливки, сыр, начинка на выбор" },
+          { name: "НЬОКИ С БЕКОНОМ", desc: "Итальянские картофельные клёцки с хрустящим беконом", ingredients: "Ньоки, бекон, сливки, пармезан, чеснок, тимьян" },
+        ]
+      },
+      {
+        id: "pasta", title: "ПАСТА",
+        items: [
+          { name: "ПАСТА С КУРИЦЕЙ И ГРИБАМИ", desc: "Кремовая паста с сочной курицей и ароматными грибами", ingredients: "Паста, куриное филе, шампиньоны, сливки, чеснок, пармезан" },
+          { name: "ПАСТА С КУРИЦЕЙ И КУКУРУЗОЙ", desc: "Нежная паста с куриным филе и сладкой кукурузой", ingredients: "Паста, курица, кукуруза, сливочный соус, зелень, специи" },
+          { name: "ПАСТА С ФАРШЕМ В ТОМАТНОМ СОУСЕ", desc: "Классическая паста болоньезе с насыщенным томатным соусом", ingredients: "Паста, говяжий фарш, помидоры, лук, чеснок, базилик" },
+          { name: "ПО-ФЛОТСКИ", desc: "Традиционная советская паста с обжаренным мясным фаршем", ingredients: "Рожки, говяжий фарш, лук, масло, соль, перец" },
+          { name: "КАРБОНАРА", desc: "Классическая итальянская карбонара с яичным соусом", ingredients: "Спагетти, бекон/гуанчале, яйца, пармезан, чёрный перец" },
+          { name: "ПТИТИМ СО ШПИНАТОМ В СЛИВКАХ", desc: "Израильский птитим с нежным шпинатом в сливочном соусе", ingredients: "Птитим, шпинат, сливки, чеснок, пармезан, мускатный орех" },
+          { name: "ПАСТА С СОСИСКАМИ В СЫРНОМ СОУСЕ", desc: "Сытная паста с сосисками в тянущемся сырном соусе", ingredients: "Паста, сосиски, плавленый сыр, молоко, чеснок, специи" },
+          { name: "ПАСТА С ТУНЦОМ", desc: "Средиземноморская паста с тунцом и каперсами", ingredients: "Паста, тунец, каперсы, оливки, помидоры, оливковое масло, чеснок" },
+          { name: "ПТИТИМ С КУРИЦЕЙ", desc: "Сочный птитим с запечённым куриным филе и специями", ingredients: "Птитим, куриное филе, лук, чеснок, специи, зелень" },
+          { name: "ПАСТА В СЫРНО-ТОМАТНОМ СОУСЕ", desc: "Насыщенная паста в двойном сырно-томатном соусе", ingredients: "Паста, помидоры, сыр, сливки, чеснок, базилик, орегано" },
+        ]
+      },
+      {
+        id: "garnish", title: "ГАРНИР",
+        items: [
+          { name: "ЗАПЕЧЕНЫЙ КАРТОФЕЛЬ", desc: "Золотистый картофель запечённый с розмарином и чесноком", ingredients: "Картофель, оливковое масло, розмарин, чеснок, соль, перец" },
+          { name: "ЖАРЕНЫЙ КАРТОФЕЛЬ", desc: "Классический жареный картофель с хрустящей корочкой", ingredients: "Картофель, растительное масло, лук, соль, укроп" },
+          { name: "КАРТОФЕЛЬНОЕ ПЮРЕ", desc: "Нежное сливочное картофельное пюре домашнего приготовления", ingredients: "Картофель, сливочное масло, молоко/сливки, соль, мускатный орех" },
+          { name: "ОВОЩНОЕ СОТЭ", desc: "Ароматное сотэ из сезонных овощей с прованскими травами", ingredients: "Кабачок, перец, баклажан, помидоры, лук, прованские травы, масло" },
+          { name: "РИС/ГРЕЧКА", desc: "Рассыпчатый варёный рис или гречка с маслом", ingredients: "Рис или гречка, вода, соль, сливочное масло" },
+          { name: "ПАСТА", desc: "Отварная паста с оливковым маслом и зеленью", ingredients: "Паста, оливковое масло, чеснок, петрушка, соль" },
+          { name: "ВОК С КУРИЦЕЙ/СВИНИНОЙ", desc: "Азиатский вок с мясом и хрустящими овощами", ingredients: "Курица или свинина, болгарский перец, брокколи, морковь, соевый соус, имбирь" },
+          { name: "УДОН С КУРИЦЕЙ/СВИНИНОЙ", desc: "Японская лапша удон с мясом в пикантном соусе", ingredients: "Удон, курица или свинина, соевый соус, кунжутное масло, зелёный лук, кунжут" },
+        ]
+      },
+      {
+        id: "snacks", title: "ЗАКУСКИ",
+        items: [
+          { name: "ТАКОС", desc: "Мексиканские тако с сочной начинкой и свежей сальсой", ingredients: "Тортилья, фарш/курица, помидоры, лук, сыр, сметана, специи" },
+          { name: "ПИЦЦА", desc: "Классическая пицца на тонком тесте с томатным соусом", ingredients: "Тесто, томатный соус, моцарелла, начинка на выбор, орегано" },
+          { name: "ЛЕПЕШКА БИГ-МАК", desc: "Бургер-лепёшка с говяжьим фаршем и классическим соусом", ingredients: "Лаваш, говяжий фарш, листья салата, помидоры, сыр, соус биг-мак" },
+          { name: "ШАУРМА", desc: "Сочная шаурма с курицей и свежими овощами в лаваше", ingredients: "Лаваш, курица, капуста, помидоры, огурцы, соус, специи" },
+          { name: "КАНАПЕ С ВЕТЧИНОЙ И СЫРОМ", desc: "Изысканные канапе с нежной ветчиной и сыром", ingredients: "Хлеб, ветчина, сыр, зелень, горчица или майонез" },
+          { name: "КАНАПЕ С КУРИЦЕЙ И ГРИБАМИ", desc: "Ароматные канапе с куриным филе и грибами", ingredients: "Хлеб, куриное филе, шампиньоны, сыр, зелень, соус" },
+          { name: "КАНАПЕ КУРИЦА И 4 СЫРА", desc: "Изысканные канапе с курицей и смесью четырёх сыров", ingredients: "Хлеб, курица, моцарелла, пармезан, гауда, дор блю" },
+          { name: "БРУСКЕТТА С ЛОСОСЕМ/ГОВЯДИНОЙ", desc: "Итальянские брускетты с лососем или говядиной на гриле", ingredients: "Чиабатта, лосось или говядина, помидоры, руккола, оливковое масло, каперсы" },
+          { name: "ГОРЯЧИЕ БУТЕРБРОДЫ", desc: "Горячие бутерброды с сыром и начинкой на выбор", ingredients: "Хлеб, сыр, ветчина или курица, томаты, масло, специи" },
+          { name: "СЕНДВИЧ КЛАССИЧЕСКИЙ/ГОРЯЧИЙ/С ТУНЦОМ", desc: "Сэндвич в трёх вариантах: классический, горячий или с тунцом", ingredients: "Хлеб, начинка (ветчина/курица/тунец), листья салата, помидоры, соус" },
+          { name: "КУРИНЫЕ СТРИПСЫ/ПОПКОРН", desc: "Хрустящие куриные кусочки в золотистой панировке", ingredients: "Куриное филе, яйца, панировочные сухари, специи, масло для жарки" },
+          { name: "ХОТ-ДОГИ КЛАССИЧЕСКИЕ/С КУКУРУЗОЙ", desc: "Классические хот-доги или в кукурузном тесте", ingredients: "Сосиска, булочка, горчица, кетчуп, лук, кукурузное тесто (опц.)" },
+          { name: "СУШИ-ТОРТ", desc: "Торт в стиле суши с рисом, рыбой и авокадо", ingredients: "Рис, лосось, авокадо, огурцы, нори, сливочный сыр, кунжут" },
+          { name: "СУШИ ШАРИКИ", desc: "Компактные шарики суши с различными начинками", ingredients: "Рис для суши, лосось/тунец, авокадо, нори, кунжут, соевый соус" },
+          { name: "ПАШТЕТ", desc: "Нежный домашний паштет из куриной печени с травами", ingredients: "Куриная печень, сливочное масло, лук, коньяк, тимьян, специи" },
+        ]
+      },
+      {
+        id: "sauces", title: "СОУСЫ",
+        items: [
+          { name: "ЦЕЗАРЬ", desc: "Классический сливочный соус цезарь с анчоусами", ingredients: "Анчоусы, чеснок, лимонный сок, пармезан, яичный желток, масло, горчица" },
+          { name: "ЧЕСНОЧНЫЙ", desc: "Насыщенный чесночный соус на основе сметаны", ingredients: "Сметана или майонез, чеснок, укроп, соль, лимонный сок" },
+          { name: "КАРТОФЕЛЬНЫЙ", desc: "Необычный пикантный соус на основе картофеля", ingredients: "Картофель, чеснок, оливковое масло, лимон, специи, зелень" },
+          { name: "РАНЧ", desc: "Американский соус ранч с пахтой и травами", ingredients: "Пахта, майонез, сметана, укроп, петрушка, чеснок, лук, специи" },
+        ]
+      }
+    ];
+
+    const root = document.getElementById('menu-root');
+
+    menuData.forEach(cat => {
+      const catDiv = document.createElement('div');
+      catDiv.className = 'category';
+
+      // Category toggle button
+      const catBtn = document.createElement('button');
+      catBtn.className = 'category-toggle';
+      catBtn.innerHTML = `
+        <span class="category-title">${cat.title}</span>
+        <span class="category-icon" id="icon-${cat.id}">+</span>
+      `;
+      catDiv.appendChild(catBtn);
+
+      // Items list
+      const itemsList = document.createElement('div');
+      itemsList.className = 'items-list';
+      itemsList.id = `list-${cat.id}`;
+
+      cat.items.forEach((item, idx) => {
+        const itemId = `${cat.id}-${idx}`;
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'item';
+
+        // Item toggle
+        const itemBtn = document.createElement('button');
+        itemBtn.className = 'item-toggle';
+        itemBtn.id = `btn-${itemId}`;
+        itemBtn.innerHTML = `<span class="item-name">${item.name}</span>`;
+        itemDiv.appendChild(itemBtn);
+
+        // Detail card
+        const detail = document.createElement('div');
+        detail.className = 'item-detail';
+        detail.id = `detail-${itemId}`;
+
+        detail.innerHTML = `
+          <div class="img-zone">
+            <label class="img-upload-label" for="file-${itemId}" id="label-${itemId}">
+              <span class="img-upload-icon">＋</span>
+              <span class="img-upload-text">ДОБАВИТЬ ФОТО</span>
+            </label>
+            <div class="img-preview-wrap" id="preview-wrap-${itemId}">
+              <img class="img-preview" id="preview-${itemId}" src="" alt="${item.name}" />
+              <label class="img-replace-label" for="file-${itemId}">ЗАМЕНИТЬ</label>
+            </div>
+            <input type="file" accept="image/*" id="file-${itemId}" />
+          </div>
+          <div class="field-desc">
+            <span class="field-label">ОПИСАНИЕ</span>
+            <span class="field-text-desc">${item.desc}</span>
+          </div>
+          <div>
+            <span class="field-label">ИНГРЕДИЕНТЫ</span>
+            <span class="field-text-ing">${item.ingredients}</span>
+          </div>
+        `;
+
+        itemDiv.appendChild(detail);
+        itemsList.appendChild(itemDiv);
+
+        // Item toggle click
+        itemBtn.addEventListener('click', () => {
+          const isOpen = detail.classList.contains('open');
+          // Close all items in this category
+          itemsList.querySelectorAll('.item-detail').forEach(d => d.classList.remove('open'));
+          itemsList.querySelectorAll('.item-toggle').forEach(b => b.classList.remove('active'));
+          if (!isOpen) {
+            detail.classList.add('open');
+            itemBtn.classList.add('active');
+          }
+        });
+
+        // Image upload
+        const fileInput = detail.querySelector(`#file-${itemId}`);
+        const previewWrap = detail.querySelector(`#preview-wrap-${itemId}`);
+        const previewImg = detail.querySelector(`#preview-${itemId}`);
+        const uploadLabel = detail.querySelector(`#label-${itemId}`);
+
+        fileInput.addEventListener('change', (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          const url = URL.createObjectURL(file);
+          previewImg.src = url;
+          previewWrap.classList.add('has-image');
+          uploadLabel.style.display = 'none';
+        });
+      });
+
+      catDiv.appendChild(itemsList);
+
+      // Category toggle click
+      catBtn.addEventListener('click', () => {
+        const isOpen = itemsList.classList.contains('open');
+        const icon = document.getElementById(`icon-${cat.id}`);
+        itemsList.classList.toggle('open', !isOpen);
+        icon.classList.toggle('open', !isOpen);
+        if (isOpen) {
+          // Close all items
+          itemsList.querySelectorAll('.item-detail').forEach(d => d.classList.remove('open'));
+          itemsList.querySelectorAll('.item-toggle').forEach(b => b.classList.remove('active'));
+        }
+      });
+
+      root.appendChild(catDiv);
+    });
+  </script>
+</body>
+</html>

@@ -15,7 +15,6 @@
       min-height: 100vh;
     }
 
-    /* HEADER */
     .header {
       text-align: center;
       margin-bottom: 3.5rem;
@@ -23,7 +22,6 @@
       border-bottom: 3px solid #2c1a0e;
     }
     .header h1 {
-      font-family: 'Bebas Neue', Impact, sans-serif;
       font-size: clamp(5rem, 18vw, 10rem);
       letter-spacing: 0.05em;
       color: #2c1a0e;
@@ -31,88 +29,64 @@
       font-weight: 400;
     }
 
-    /* WRAPPER */
-    .menu-wrap {
-      max-width: 780px;
-      margin: 0 auto;
-    }
+    .menu-wrap { max-width: 780px; margin: 0 auto; }
 
-    /* CATEGORY */
     .category {
       margin-bottom: 2.5rem;
       border-top: 2px solid #2c1a0e;
       padding-top: 1.5rem;
     }
 
-    .category-toggle {
+    .cat-toggle, .item-toggle { display: none; }
+
+    .cat-label {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 100%;
-      background: none;
-      border: none;
       cursor: pointer;
-      padding: 0;
-      text-align: left;
+      user-select: none;
     }
-    .category-toggle:focus { outline: none; }
-
-    .category-title {
-      font-family: 'Bebas Neue', Impact, sans-serif;
+    .cat-label .cat-title {
       font-size: clamp(1.4rem, 4vw, 2rem);
       letter-spacing: 0.12em;
       color: #2c1a0e;
-      font-weight: 400;
     }
-
-    .category-icon {
-      font-family: 'Bebas Neue', Impact, sans-serif;
+    .cat-label .cat-icon {
       font-size: 1.4rem;
       color: #8b5e3c;
+      transition: transform 0.3s;
       display: inline-block;
-      transition: transform 0.35s ease;
-      line-height: 1;
     }
-    .category-icon.open { transform: rotate(45deg); }
+    .cat-toggle:checked ~ .cat-label .cat-icon { transform: rotate(45deg); }
 
-    /* ITEMS LIST */
     .items-list {
       display: none;
       margin-top: 1.2rem;
       padding-left: 1rem;
       border-left: 1.5px solid #c9a882;
     }
-    .items-list.open { display: block; }
+    .cat-toggle:checked ~ .items-list { display: block; }
 
-    /* ITEM */
     .item { margin-bottom: 0.3rem; }
 
-    .item-toggle {
+    .item-label {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      background: none;
-      border: none;
       cursor: pointer;
       padding: 0.55rem 0.8rem;
-      text-align: left;
       border-radius: 3px;
       transition: background 0.2s;
+      user-select: none;
     }
-    .item-toggle:focus { outline: none; }
-    .item-toggle:hover { background: #f0e4d4; }
-    .item-toggle.active { background: #ede0d0; }
+    .item-label:hover { background: #f0e4d4; }
+    .item-toggle:checked ~ .item-label { background: #ede0d0; }
 
     .item-name {
-      font-family: 'Bebas Neue', Impact, sans-serif;
       font-size: clamp(0.95rem, 2.5vw, 1.15rem);
       letter-spacing: 0.08em;
       color: #2c1a0e;
-      font-weight: 400;
     }
 
-    /* DETAIL CARD */
     .item-detail {
       display: none;
       margin: 0.4rem 0.8rem 0.8rem 0.8rem;
@@ -121,86 +95,25 @@
       border-left: 3px solid #8b5e3c;
       border-radius: 2px;
     }
-    .item-detail.open { display: block; }
+    .item-toggle:checked ~ .item-detail { display: block; }
 
-    /* IMAGE ZONE */
-    .img-zone { margin-bottom: 1rem; }
-
-    .img-upload-label {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 120px;
-      border: 1.5px dashed #c9a882;
-      border-radius: 3px;
-      cursor: pointer;
-      gap: 0.4rem;
-      background: #faf5ee;
-      transition: background 0.2s;
-    }
-    .img-upload-label:hover { background: #f0e4d4; }
-
-    .img-upload-icon {
-      font-size: 1.6rem;
-      color: #c9a882;
-    }
-
-    .img-upload-text {
-      font-family: 'Bebas Neue', Impact, sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.16em;
-      color: #a07850;
-    }
-
-    .img-preview-wrap {
-      position: relative;
-      width: 100%;
-      display: none;
-    }
-    .img-preview-wrap.has-image { display: block; }
-
-    .img-preview {
+    .item-detail img {
       width: 100%;
       max-height: 200px;
       object-fit: cover;
       border-radius: 3px;
       display: block;
+      margin-bottom: 1rem;
     }
 
-    .img-replace-label {
-      position: absolute;
-      bottom: 8px;
-      right: 8px;
-      background: rgba(44, 26, 14, 0.7);
-      color: #faf5ee;
-      font-family: 'Bebas Neue', Impact, sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      padding: 4px 10px;
-      border-radius: 2px;
-      cursor: pointer;
-    }
-    .img-replace-label:hover { background: rgba(44, 26, 14, 0.9); }
-
-    input[type="file"] { display: none; }
-
-    /* DESCRIPTION / INGREDIENTS */
     .field-label {
-      font-family: 'Bebas Neue', Impact, sans-serif;
       font-size: 0.78rem;
       letter-spacing: 0.18em;
       color: #8b5e3c;
       display: block;
       margin-bottom: 0.25rem;
-      text-transform: uppercase;
     }
-
-    .field-desc {
-      margin-bottom: 0.7rem;
-    }
-
+    .field-desc { margin-bottom: 0.7rem; }
     .field-text-desc {
       font-family: Georgia, serif;
       font-size: 0.88rem;
@@ -208,7 +121,6 @@
       line-height: 1.6;
       font-style: italic;
     }
-
     .field-text-ing {
       font-family: Georgia, serif;
       font-size: 0.85rem;
@@ -219,234 +131,854 @@
 </head>
 <body>
 
-  <div class="header">
-    <h1>MENU</h1>
+<div class="header"><h1>MENU</h1></div>
+
+<div class="menu-wrap">
+
+  <!-- ===== САЛАТЫ ===== -->
+  <div class="category">
+    <input type="checkbox" class="cat-toggle" id="cat-salads">
+    <label class="cat-label" for="cat-salads">
+      <span class="cat-title">САЛАТЫ</span>
+      <span class="cat-icon">+</span>
+    </label>
+    <div class="items-list">
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-s-01">
+        <label class="item-label" for="i-s-01"><span class="item-name">ЦЕЗАРЬ</span></label>
+        <div class="item-detail">
+          <img src="images/caesar.jpg" alt="ЦЕЗАРЬ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Классический салат с хрустящими листьями романо, гренками и пармезаном</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Романо, пармезан, гренки, анчоусы, соус цезарь, лимон</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-s-02">
+        <label class="item-label" for="i-s-02"><span class="item-name">ОЛИВЬЕ</span></label>
+        <div class="item-detail">
+          <img src="images/olivier.jpg" alt="ОЛИВЬЕ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Традиционный русский салат с варёными овощами и колбасой</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Картофель, морковь, горошек, яйца, колбаса, майонез, огурцы</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-s-03">
+        <label class="item-label" for="i-s-03"><span class="item-name">КРАБОВЫЙ САЛАТ</span></label>
+        <div class="item-detail">
+          <img src="images/krab.jpg" alt="КРАБОВЫЙ САЛАТ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Нежный салат с крабовыми палочками и свежей кукурузой</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Крабовые палочки, кукуруза, яйца, рис, майонез</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-s-04">
+        <label class="item-label" for="i-s-04"><span class="item-name">КОУЛ-СЛОУ</span></label>
+        <div class="item-detail">
+          <img src="images/coleslaw.jpg" alt="КОУЛ-СЛОУ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Американский капустный салат с лёгкой кремовой заправкой</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Белокочанная капуста, морковь, майонез, уксус, сахар</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-s-05">
+        <label class="item-label" for="i-s-05"><span class="item-name">САЛАТ С ТУНЦОМ</span></label>
+        <div class="item-detail">
+          <img src="images/tuna_salad.jpg" alt="САЛАТ С ТУНЦОМ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Свежий салат с консервированным тунцом и овощами</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Тунец, огурцы, помидоры, лук, оливковое масло, лимон</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-s-06">
+        <label class="item-label" for="i-s-06"><span class="item-name">САЛАТ ЗЕЛЕНЫЙ</span></label>
+        <div class="item-detail">
+          <img src="images/green_salad.jpg" alt="САЛАТ ЗЕЛЕНЫЙ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Лёгкий микс из свежей зелени с авторской заправкой</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Романо, руккола, шпинат, огурцы, оливковое масло, лимон</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-s-07">
+        <label class="item-label" for="i-s-07"><span class="item-name">САЛАТ С ХРУСТЯЩИМ РИСОМ</span></label>
+        <div class="item-detail">
+          <img src="images/crispy_rice_salad.jpg" alt="САЛАТ С ХРУСТЯЩИМ РИСОМ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Оригинальный салат с обжаренным хрустящим рисом</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Рис, авокадо, огурцы, кунжут, соевый соус, имбирь</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-s-08">
+        <label class="item-label" for="i-s-08"><span class="item-name">САЛАТ БИГ-МАК</span></label>
+        <div class="item-detail">
+          <img src="images/bigmac_salad.jpg" alt="САЛАТ БИГ-МАК" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Бургерный салат в стиле культового сэндвича</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Говяжий фарш, листья айсберга, помидоры, лук, сыр, соус биг-мак</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-s-09">
+        <label class="item-label" for="i-s-09"><span class="item-name">КАРТОФЕЛЬНЫЙ САЛАТ</span></label>
+        <div class="item-detail">
+          <img src="images/potato_salad.jpg" alt="КАРТОФЕЛЬНЫЙ САЛАТ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Сытный картофельный салат с зеленью и пикантной заправкой</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Картофель, зелёный лук, укроп, горчица, майонез, яйца</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-s-10">
+        <label class="item-label" for="i-s-10"><span class="item-name">САЛАТ КАЛИФОРНИЯ</span></label>
+        <div class="item-detail">
+          <img src="images/california_salad.jpg" alt="САЛАТ КАЛИФОРНИЯ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Свежий калифорнийский салат с авокадо и морепродуктами</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Авокадо, крабовые палочки, огурцы, рис, кунжут, соевый соус</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-s-11">
+        <label class="item-label" for="i-s-11"><span class="item-name">МЕКСИКАНСКИЙ</span></label>
+        <div class="item-detail">
+          <img src="images/mexican_salad.jpg" alt="МЕКСИКАНСКИЙ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Яркий салат с фасолью, кукурузой и острой заправкой</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Фасоль, кукуруза, помидоры, перец, кинза, лайм, специи</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-s-12">
+        <label class="item-label" for="i-s-12"><span class="item-name">ОГУРЦЫ ФЕТА</span></label>
+        <div class="item-detail">
+          <img src="images/cucumber_feta.jpg" alt="ОГУРЦЫ ФЕТА" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Освежающий греческий салат с хрустящими огурцами</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Огурцы, сыр фета, мята, оливковое масло, чёрный перец</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-s-13">
+        <label class="item-label" for="i-s-13"><span class="item-name">ЛЕТНЯЯ КЛАССИКА</span></label>
+        <div class="item-detail">
+          <img src="images/summer_salad.jpg" alt="ЛЕТНЯЯ КЛАССИКА" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Классический летний салат из свежих сезонных овощей</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Помидоры, огурцы, болгарский перец, лук, зелень, масло</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-s-14">
+        <label class="item-label" for="i-s-14"><span class="item-name">САЛАТ С КУКУРУЗОЙ</span></label>
+        <div class="item-detail">
+          <img src="images/corn_salad.jpg" alt="САЛАТ С КУКУРУЗОЙ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Сытный салат с сочной кукурузой и хрустящими крутонами</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Кукуруза, пекинская капуста, морковь, крутоны, майонез</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-s-15">
+        <label class="item-label" for="i-s-15"><span class="item-name">МАЛОСОЛЬНЫЕ ОВОЩИ</span></label>
+        <div class="item-detail">
+          <img src="images/pickled_veg.jpg" alt="МАЛОСОЛЬНЫЕ ОВОЩИ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Хрустящие слабосолёные овощи домашнего приготовления</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Огурцы, помидоры, чеснок, укроп, соль, сахар, уксус</span></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <div class="menu-wrap" id="menu-root"></div>
+  <!-- ===== СУПЫ ===== -->
+  <div class="category">
+    <input type="checkbox" class="cat-toggle" id="cat-soups">
+    <label class="cat-label" for="cat-soups">
+      <span class="cat-title">СУПЫ</span>
+      <span class="cat-icon">+</span>
+    </label>
+    <div class="items-list">
 
-  <script>
-    const menuData = [
-      {
-        id: "salads", title: "САЛАТЫ",
-        items: [
-          { name: "ЦЕЗАРЬ", desc: "Классический салат с хрустящими листьями романо, гренками и пармезаном", ingredients: "Романо, пармезан, гренки, анчоусы, соус цезарь, лимон" },
-          { name: "ОЛИВЬЕ", desc: "Традиционный русский салат с варёными овощами и колбасой", ingredients: "Картофель, морковь, горошек, яйца, колбаса, майонез, огурцы" },
-          { name: "КРАБОВЫЙ САЛАТ", desc: "Нежный салат с крабовыми палочками и свежей кукурузой", ingredients: "Крабовые палочки, кукуруза, яйца, рис, майонез" },
-          { name: "КОУЛ-СЛОУ", desc: "Американский капустный салат с лёгкой кремовой заправкой", ingredients: "Белокочанная капуста, морковь, майонез, уксус, сахар" },
-          { name: "САЛАТ С ТУНЦОМ", desc: "Свежий салат с консервированным тунцом и овощами", ingredients: "Тунец, огурцы, помидоры, лук, оливковое масло, лимон" },
-          { name: "САЛАТ ЗЕЛЕНЫЙ", desc: "Лёгкий микс из свежей зелени с авторской заправкой", ingredients: "Романо, руккола, шпинат, огурцы, оливковое масло, лимон" },
-          { name: "САЛАТ С ХРУСТЯЩИМ РИСОМ", desc: "Оригинальный салат с обжаренным хрустящим рисом", ingredients: "Рис, авокадо, огурцы, кунжут, соевый соус, имбирь" },
-          { name: "САЛАТ БИГ-МАК", desc: "Бургерный салат в стиле культового сэндвича", ingredients: "Говяжий фарш, листья айсберга, помидоры, лук, сыр, соус биг-мак" },
-          { name: "КАРТОФЕЛЬНЫЙ САЛАТ", desc: "Сытный картофельный салат с зеленью и пикантной заправкой", ingredients: "Картофель, зелёный лук, укроп, горчица, майонез, яйца" },
-          { name: "САЛАТ КАЛИФОРНИЯ", desc: "Свежий калифорнийский салат с авокадо и морепродуктами", ingredients: "Авокадо, крабовые палочки, огурцы, рис, кунжут, соевый соус" },
-          { name: "МЕКСИКАНСКИЙ", desc: "Яркий салат с фасолью, кукурузой и острой заправкой", ingredients: "Фасоль, кукуруза, помидоры, перец, кинза, лайм, специи" },
-          { name: "ОГУРЦЫ ФЕТА", desc: "Освежающий греческий салат с хрустящими огурцами", ingredients: "Огурцы, сыр фета, мята, оливковое масло, чёрный перец" },
-          { name: "ЛЕТНЯЯ КЛАССИКА", desc: "Классический летний салат из свежих сезонных овощей", ingredients: "Помидоры, огурцы, болгарский перец, лук, зелень, масло" },
-          { name: "САЛАТ С КУКУРУЗОЙ", desc: "Сытный салат с сочной кукурузой и хрустящими крутонами", ingredients: "Кукуруза, пекинская капуста, морковь, крутоны, майонез" },
-          { name: "МАЛОСОЛЬНЫЕ ОВОЩИ", desc: "Хрустящие слабосолёные овощи домашнего приготовления", ingredients: "Огурцы, помидоры, чеснок, укроп, соль, сахар, уксус" },
-        ]
-      },
-      {
-        id: "soups", title: "СУПЫ",
-        items: [
-          { name: "КУРИНЫЙ", desc: "Нежный домашний куриный суп с лапшой и зеленью", ingredients: "Куриное филе, лапша, морковь, лук, сельдерей, укроп" },
-          { name: "СЫРНЫЙ КРЕМ-СУП", desc: "Бархатистый крем-суп с плавленым сыром и гренками", ingredients: "Плавленый сыр, картофель, лук, сливки, гренки, зелень" },
-          { name: "ОВОЩНОЙ КРЕМ-СУП", desc: "Нежный крем-суп из сезонных овощей с травами", ingredients: "Тыква/кабачок, лук, морковь, сливки, специи, тимьян" },
-          { name: "БОРЩ", desc: "Традиционный украинский борщ на насыщенном мясном бульоне", ingredients: "Говядина, свёкла, капуста, картофель, морковь, томатная паста, сметана" },
-        ]
-      },
-      {
-        id: "hot", title: "ГОРЯЧЕЕ",
-        items: [
-          { name: "КУРИНАЯ ЗАПЕКАНКА", desc: "Сочная запеканка из куриного филе с овощами и сыром", ingredients: "Куриное филе, сыр, сметана, лук, специи, зелень" },
-          { name: "ЗАПЕКАНКА С ФАРШЕМ", desc: "Сытная запеканка из мясного фарша с картофелем", ingredients: "Говяжий фарш, картофель, лук, сыр, яйца, специи" },
-          { name: "ЗАПЕКАНКА ЖУЛЬЕН", desc: "Классический жульен с грибами и курицей под сырной корочкой", ingredients: "Курица, шампиньоны, лук, сливки, сыр, мускатный орех" },
-          { name: "КУРИЦА В МЕДОВО-ГОРЧИЧНОМ СОУСЕ", desc: "Нежная курица в ароматном медово-горчичном маринаде", ingredients: "Куриное филе, мёд, горчица, чеснок, тимьян, масло" },
-          { name: "КУРИЦА В СМЕТАННОМ СОУСЕ", desc: "Мягкая курица тушёная в густом сметанном соусе", ingredients: "Куриное филе, сметана, лук, чеснок, укроп, специи" },
-          { name: "СВИНИНА С ОВОЩАМИ ТЕРИЯКИ", desc: "Сочная свинина с овощами в японском соусе терияки", ingredients: "Свинина, болгарский перец, брокколи, соус терияки, кунжут" },
-          { name: "ЗАПЕЧЕНЫЙ КАРТОФЕЛЬ С КУРИЦЕЙ", desc: "Аппетитный запечённый картофель с куриным филе и специями", ingredients: "Картофель, куриное филе, розмарин, чеснок, оливковое масло" },
-          { name: "ГУЛЯШ", desc: "Классический венгерский гуляш из тушёной говядины", ingredients: "Говядина, лук, томатная паста, паприка, чеснок, специи" },
-          { name: "ЖАРКОЕ СО СВИНИНОЙ", desc: "Сытное домашнее жаркое с картофелем и свининой", ingredients: "Свинина, картофель, лук, морковь, томатная паста, лавровый лист" },
-          { name: "ЖУЛЬЕН", desc: "Классический жульен с грибами в сливочном соусе", ingredients: "Шампиньоны, лук, сливки, сыр, масло, мускатный орех" },
-          { name: "ГРЕЧКА С ОВОЩАМИ И КУРИЦЕЙ", desc: "Полезная гречка с куриным филе и сезонными овощами", ingredients: "Гречка, куриное филе, морковь, лук, перец, зелень" },
-          { name: "КУРИНАЯ ГРУДКА В КЛЯРЕ", desc: "Хрустящая куриная грудка в золотистом кляре", ingredients: "Куриная грудка, яйца, мука, панировочные сухари, специи" },
-          { name: "ОХОТНИЧЬИ КОЛБАСКИ С КАРТОФЕЛЕМ", desc: "Сочные охотничьи колбаски с запечённым картофелем", ingredients: "Охотничьи колбаски, картофель, горчица, розмарин, масло" },
-          { name: "РУБЛЕННЫЕ КОТЛЕТЫ", desc: "Сочные котлеты из рубленого мяса с зеленью", ingredients: "Говядина, лук, яйца, зелень, специи, панировочные сухари" },
-          { name: "КОНВЕРТИКИ ИЗ ФАРША С СЫРОМ", desc: "Хрустящие конвертики из теста с сырно-мясной начинкой", ingredients: "Фарш, сыр, тесто слоёное, лук, чеснок, специи" },
-          { name: "КУРИНЫЕ КОТЛЕТЫ", desc: "Нежные куриные котлеты из рубленого филе", ingredients: "Куриное филе, лук, яйца, хлеб, сметана, специи" },
-          { name: "ЗАПЕЧЕНАЯ КАРТОШКА С БЕКОНОМ", desc: "Ароматная картошка запечённая с хрустящим беконом", ingredients: "Картофель, бекон, чеснок, розмарин, оливковое масло, сыр" },
-          { name: "КУСКУС С ТУНЦОМ", desc: "Лёгкий средиземноморский кускус с тунцом и овощами", ingredients: "Кускус, тунец, помидоры, огурцы, зелень, оливковое масло, лимон" },
-          { name: "КИШ С НАЧИНКАМИ", desc: "Французский открытый пирог с разнообразными начинками", ingredients: "Тесто песочное, яйца, сливки, сыр, начинка на выбор" },
-          { name: "НЬОКИ С БЕКОНОМ", desc: "Итальянские картофельные клёцки с хрустящим беконом", ingredients: "Ньоки, бекон, сливки, пармезан, чеснок, тимьян" },
-        ]
-      },
-      {
-        id: "pasta", title: "ПАСТА",
-        items: [
-          { name: "ПАСТА С КУРИЦЕЙ И ГРИБАМИ", desc: "Кремовая паста с сочной курицей и ароматными грибами", ingredients: "Паста, куриное филе, шампиньоны, сливки, чеснок, пармезан" },
-          { name: "ПАСТА С КУРИЦЕЙ И КУКУРУЗОЙ", desc: "Нежная паста с куриным филе и сладкой кукурузой", ingredients: "Паста, курица, кукуруза, сливочный соус, зелень, специи" },
-          { name: "ПАСТА С ФАРШЕМ В ТОМАТНОМ СОУСЕ", desc: "Классическая паста болоньезе с насыщенным томатным соусом", ingredients: "Паста, говяжий фарш, помидоры, лук, чеснок, базилик" },
-          { name: "ПО-ФЛОТСКИ", desc: "Традиционная советская паста с обжаренным мясным фаршем", ingredients: "Рожки, говяжий фарш, лук, масло, соль, перец" },
-          { name: "КАРБОНАРА", desc: "Классическая итальянская карбонара с яичным соусом", ingredients: "Спагетти, бекон/гуанчале, яйца, пармезан, чёрный перец" },
-          { name: "ПТИТИМ СО ШПИНАТОМ В СЛИВКАХ", desc: "Израильский птитим с нежным шпинатом в сливочном соусе", ingredients: "Птитим, шпинат, сливки, чеснок, пармезан, мускатный орех" },
-          { name: "ПАСТА С СОСИСКАМИ В СЫРНОМ СОУСЕ", desc: "Сытная паста с сосисками в тянущемся сырном соусе", ingredients: "Паста, сосиски, плавленый сыр, молоко, чеснок, специи" },
-          { name: "ПАСТА С ТУНЦОМ", desc: "Средиземноморская паста с тунцом и каперсами", ingredients: "Паста, тунец, каперсы, оливки, помидоры, оливковое масло, чеснок" },
-          { name: "ПТИТИМ С КУРИЦЕЙ", desc: "Сочный птитим с запечённым куриным филе и специями", ingredients: "Птитим, куриное филе, лук, чеснок, специи, зелень" },
-          { name: "ПАСТА В СЫРНО-ТОМАТНОМ СОУСЕ", desc: "Насыщенная паста в двойном сырно-томатном соусе", ingredients: "Паста, помидоры, сыр, сливки, чеснок, базилик, орегано" },
-        ]
-      },
-      {
-        id: "garnish", title: "ГАРНИР",
-        items: [
-          { name: "ЗАПЕЧЕНЫЙ КАРТОФЕЛЬ", desc: "Золотистый картофель запечённый с розмарином и чесноком", ingredients: "Картофель, оливковое масло, розмарин, чеснок, соль, перец" },
-          { name: "ЖАРЕНЫЙ КАРТОФЕЛЬ", desc: "Классический жареный картофель с хрустящей корочкой", ingredients: "Картофель, растительное масло, лук, соль, укроп" },
-          { name: "КАРТОФЕЛЬНОЕ ПЮРЕ", desc: "Нежное сливочное картофельное пюре домашнего приготовления", ingredients: "Картофель, сливочное масло, молоко/сливки, соль, мускатный орех" },
-          { name: "ОВОЩНОЕ СОТЭ", desc: "Ароматное сотэ из сезонных овощей с прованскими травами", ingredients: "Кабачок, перец, баклажан, помидоры, лук, прованские травы, масло" },
-          { name: "РИС/ГРЕЧКА", desc: "Рассыпчатый варёный рис или гречка с маслом", ingredients: "Рис или гречка, вода, соль, сливочное масло" },
-          { name: "ПАСТА", desc: "Отварная паста с оливковым маслом и зеленью", ingredients: "Паста, оливковое масло, чеснок, петрушка, соль" },
-          { name: "ВОК С КУРИЦЕЙ/СВИНИНОЙ", desc: "Азиатский вок с мясом и хрустящими овощами", ingredients: "Курица или свинина, болгарский перец, брокколи, морковь, соевый соус, имбирь" },
-          { name: "УДОН С КУРИЦЕЙ/СВИНИНОЙ", desc: "Японская лапша удон с мясом в пикантном соусе", ingredients: "Удон, курица или свинина, соевый соус, кунжутное масло, зелёный лук, кунжут" },
-        ]
-      },
-      {
-        id: "snacks", title: "ЗАКУСКИ",
-        items: [
-          { name: "ТАКОС", desc: "Мексиканские тако с сочной начинкой и свежей сальсой", ingredients: "Тортилья, фарш/курица, помидоры, лук, сыр, сметана, специи" },
-          { name: "ПИЦЦА", desc: "Классическая пицца на тонком тесте с томатным соусом", ingredients: "Тесто, томатный соус, моцарелла, начинка на выбор, орегано" },
-          { name: "ЛЕПЕШКА БИГ-МАК", desc: "Бургер-лепёшка с говяжьим фаршем и классическим соусом", ingredients: "Лаваш, говяжий фарш, листья салата, помидоры, сыр, соус биг-мак" },
-          { name: "ШАУРМА", desc: "Сочная шаурма с курицей и свежими овощами в лаваше", ingredients: "Лаваш, курица, капуста, помидоры, огурцы, соус, специи" },
-          { name: "КАНАПЕ С ВЕТЧИНОЙ И СЫРОМ", desc: "Изысканные канапе с нежной ветчиной и сыром", ingredients: "Хлеб, ветчина, сыр, зелень, горчица или майонез" },
-          { name: "КАНАПЕ С КУРИЦЕЙ И ГРИБАМИ", desc: "Ароматные канапе с куриным филе и грибами", ingredients: "Хлеб, куриное филе, шампиньоны, сыр, зелень, соус" },
-          { name: "КАНАПЕ КУРИЦА И 4 СЫРА", desc: "Изысканные канапе с курицей и смесью четырёх сыров", ingredients: "Хлеб, курица, моцарелла, пармезан, гауда, дор блю" },
-          { name: "БРУСКЕТТА С ЛОСОСЕМ/ГОВЯДИНОЙ", desc: "Итальянские брускетты с лососем или говядиной на гриле", ingredients: "Чиабатта, лосось или говядина, помидоры, руккола, оливковое масло, каперсы" },
-          { name: "ГОРЯЧИЕ БУТЕРБРОДЫ", desc: "Горячие бутерброды с сыром и начинкой на выбор", ingredients: "Хлеб, сыр, ветчина или курица, томаты, масло, специи" },
-          { name: "СЕНДВИЧ КЛАССИЧЕСКИЙ/ГОРЯЧИЙ/С ТУНЦОМ", desc: "Сэндвич в трёх вариантах: классический, горячий или с тунцом", ingredients: "Хлеб, начинка (ветчина/курица/тунец), листья салата, помидоры, соус" },
-          { name: "КУРИНЫЕ СТРИПСЫ/ПОПКОРН", desc: "Хрустящие куриные кусочки в золотистой панировке", ingredients: "Куриное филе, яйца, панировочные сухари, специи, масло для жарки" },
-          { name: "ХОТ-ДОГИ КЛАССИЧЕСКИЕ/С КУКУРУЗОЙ", desc: "Классические хот-доги или в кукурузном тесте", ingredients: "Сосиска, булочка, горчица, кетчуп, лук, кукурузное тесто (опц.)" },
-          { name: "СУШИ-ТОРТ", desc: "Торт в стиле суши с рисом, рыбой и авокадо", ingredients: "Рис, лосось, авокадо, огурцы, нори, сливочный сыр, кунжут" },
-          { name: "СУШИ ШАРИКИ", desc: "Компактные шарики суши с различными начинками", ingredients: "Рис для суши, лосось/тунец, авокадо, нори, кунжут, соевый соус" },
-          { name: "ПАШТЕТ", desc: "Нежный домашний паштет из куриной печени с травами", ingredients: "Куриная печень, сливочное масло, лук, коньяк, тимьян, специи" },
-        ]
-      },
-      {
-        id: "sauces", title: "СОУСЫ",
-        items: [
-          { name: "ЦЕЗАРЬ", desc: "Классический сливочный соус цезарь с анчоусами", ingredients: "Анчоусы, чеснок, лимонный сок, пармезан, яичный желток, масло, горчица" },
-          { name: "ЧЕСНОЧНЫЙ", desc: "Насыщенный чесночный соус на основе сметаны", ingredients: "Сметана или майонез, чеснок, укроп, соль, лимонный сок" },
-          { name: "КАРТОФЕЛЬНЫЙ", desc: "Необычный пикантный соус на основе картофеля", ingredients: "Картофель, чеснок, оливковое масло, лимон, специи, зелень" },
-          { name: "РАНЧ", desc: "Американский соус ранч с пахтой и травами", ingredients: "Пахта, майонез, сметана, укроп, петрушка, чеснок, лук, специи" },
-        ]
-      }
-    ];
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sp-01">
+        <label class="item-label" for="i-sp-01"><span class="item-name">КУРИНЫЙ</span></label>
+        <div class="item-detail">
+          <img src="images/chicken_soup.jpg" alt="КУРИНЫЙ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Нежный домашний куриный суп с лапшой и зеленью</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Куриное филе, лапша, морковь, лук, сельдерей, укроп</span></div>
+        </div>
+      </div>
 
-    const root = document.getElementById('menu-root');
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sp-02">
+        <label class="item-label" for="i-sp-02"><span class="item-name">СЫРНЫЙ КРЕМ-СУП</span></label>
+        <div class="item-detail">
+          <img src="images/cheese_soup.jpg" alt="СЫРНЫЙ КРЕМ-СУП" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Бархатистый крем-суп с плавленым сыром и гренками</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Плавленый сыр, картофель, лук, сливки, гренки, зелень</span></div>
+        </div>
+      </div>
 
-    menuData.forEach(cat => {
-      const catDiv = document.createElement('div');
-      catDiv.className = 'category';
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sp-03">
+        <label class="item-label" for="i-sp-03"><span class="item-name">ОВОЩНОЙ КРЕМ-СУП</span></label>
+        <div class="item-detail">
+          <img src="images/veggie_soup.jpg" alt="ОВОЩНОЙ КРЕМ-СУП" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Нежный крем-суп из сезонных овощей с травами</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Тыква/кабачок, лук, морковь, сливки, специи, тимьян</span></div>
+        </div>
+      </div>
 
-      // Category toggle button
-      const catBtn = document.createElement('button');
-      catBtn.className = 'category-toggle';
-      catBtn.innerHTML = `
-        <span class="category-title">${cat.title}</span>
-        <span class="category-icon" id="icon-${cat.id}">+</span>
-      `;
-      catDiv.appendChild(catBtn);
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sp-04">
+        <label class="item-label" for="i-sp-04"><span class="item-name">БОРЩ</span></label>
+        <div class="item-detail">
+          <img src="images/borsch.jpg" alt="БОРЩ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Традиционный украинский борщ на насыщенном мясном бульоне</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Говядина, свёкла, капуста, картофель, морковь, томатная паста, сметана</span></div>
+        </div>
+      </div>
 
-      // Items list
-      const itemsList = document.createElement('div');
-      itemsList.className = 'items-list';
-      itemsList.id = `list-${cat.id}`;
+    </div>
+  </div>
 
-      cat.items.forEach((item, idx) => {
-        const itemId = `${cat.id}-${idx}`;
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'item';
+  <!-- ===== ГОРЯЧЕЕ ===== -->
+  <div class="category">
+    <input type="checkbox" class="cat-toggle" id="cat-hot">
+    <label class="cat-label" for="cat-hot">
+      <span class="cat-title">ГОРЯЧЕЕ</span>
+      <span class="cat-icon">+</span>
+    </label>
+    <div class="items-list">
 
-        // Item toggle
-        const itemBtn = document.createElement('button');
-        itemBtn.className = 'item-toggle';
-        itemBtn.id = `btn-${itemId}`;
-        itemBtn.innerHTML = `<span class="item-name">${item.name}</span>`;
-        itemDiv.appendChild(itemBtn);
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-01">
+        <label class="item-label" for="i-h-01"><span class="item-name">КУРИНАЯ ЗАПЕКАНКА</span></label>
+        <div class="item-detail">
+          <img src="images/chicken_casserole.jpg" alt="КУРИНАЯ ЗАПЕКАНКА" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Сочная запеканка из куриного филе с овощами и сыром</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Куриное филе, сыр, сметана, лук, специи, зелень</span></div>
+        </div>
+      </div>
 
-        // Detail card
-        const detail = document.createElement('div');
-        detail.className = 'item-detail';
-        detail.id = `detail-${itemId}`;
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-02">
+        <label class="item-label" for="i-h-02"><span class="item-name">ЗАПЕКАНКА С ФАРШЕМ</span></label>
+        <div class="item-detail">
+          <img src="images/meat_casserole.jpg" alt="ЗАПЕКАНКА С ФАРШЕМ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Сытная запеканка из мясного фарша с картофелем</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Говяжий фарш, картофель, лук, сыр, яйца, специи</span></div>
+        </div>
+      </div>
 
-        detail.innerHTML = `
-          <div class="img-zone">
-            <label class="img-upload-label" for="file-${itemId}" id="label-${itemId}">
-              <span class="img-upload-icon">＋</span>
-              <span class="img-upload-text">ДОБАВИТЬ ФОТО</span>
-            </label>
-            <div class="img-preview-wrap" id="preview-wrap-${itemId}">
-              <img class="img-preview" id="preview-${itemId}" src="" alt="${item.name}" />
-              <label class="img-replace-label" for="file-${itemId}">ЗАМЕНИТЬ</label>
-            </div>
-            <input type="file" accept="image/*" id="file-${itemId}" />
-          </div>
-          <div class="field-desc">
-            <span class="field-label">ОПИСАНИЕ</span>
-            <span class="field-text-desc">${item.desc}</span>
-          </div>
-          <div>
-            <span class="field-label">ИНГРЕДИЕНТЫ</span>
-            <span class="field-text-ing">${item.ingredients}</span>
-          </div>
-        `;
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-03">
+        <label class="item-label" for="i-h-03"><span class="item-name">ЗАПЕКАНКА ЖУЛЬЕН</span></label>
+        <div class="item-detail">
+          <img src="images/julien_casserole.jpg" alt="ЗАПЕКАНКА ЖУЛЬЕН" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Классический жульен с грибами и курицей под сырной корочкой</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Курица, шампиньоны, лук, сливки, сыр, мускатный орех</span></div>
+        </div>
+      </div>
 
-        itemDiv.appendChild(detail);
-        itemsList.appendChild(itemDiv);
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-04">
+        <label class="item-label" for="i-h-04"><span class="item-name">КУРИЦА В МЕДОВО-ГОРЧИЧНОМ СОУСЕ</span></label>
+        <div class="item-detail">
+          <img src="images/honey_mustard_chicken.jpg" alt="КУРИЦА В МЕДОВО-ГОРЧИЧНОМ СОУСЕ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Нежная курица в ароматном медово-горчичном маринаде</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Куриное филе, мёд, горчица, чеснок, тимьян, масло</span></div>
+        </div>
+      </div>
 
-        // Item toggle click
-        itemBtn.addEventListener('click', () => {
-          const isOpen = detail.classList.contains('open');
-          // Close all items in this category
-          itemsList.querySelectorAll('.item-detail').forEach(d => d.classList.remove('open'));
-          itemsList.querySelectorAll('.item-toggle').forEach(b => b.classList.remove('active'));
-          if (!isOpen) {
-            detail.classList.add('open');
-            itemBtn.classList.add('active');
-          }
-        });
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-05">
+        <label class="item-label" for="i-h-05"><span class="item-name">КУРИЦА В СМЕТАННОМ СОУСЕ</span></label>
+        <div class="item-detail">
+          <img src="images/sour_cream_chicken.jpg" alt="КУРИЦА В СМЕТАННОМ СОУСЕ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Мягкая курица тушёная в густом сметанном соусе</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Куриное филе, сметана, лук, чеснок, укроп, специи</span></div>
+        </div>
+      </div>
 
-        // Image upload
-        const fileInput = detail.querySelector(`#file-${itemId}`);
-        const previewWrap = detail.querySelector(`#preview-wrap-${itemId}`);
-        const previewImg = detail.querySelector(`#preview-${itemId}`);
-        const uploadLabel = detail.querySelector(`#label-${itemId}`);
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-06">
+        <label class="item-label" for="i-h-06"><span class="item-name">СВИНИНА С ОВОЩАМИ ТЕРИЯКИ</span></label>
+        <div class="item-detail">
+          <img src="images/pork_teriyaki.jpg" alt="СВИНИНА С ОВОЩАМИ ТЕРИЯКИ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Сочная свинина с овощами в японском соусе терияки</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Свинина, болгарский перец, брокколи, соус терияки, кунжут</span></div>
+        </div>
+      </div>
 
-        fileInput.addEventListener('change', (e) => {
-          const file = e.target.files[0];
-          if (!file) return;
-          const url = URL.createObjectURL(file);
-          previewImg.src = url;
-          previewWrap.classList.add('has-image');
-          uploadLabel.style.display = 'none';
-        });
-      });
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-07">
+        <label class="item-label" for="i-h-07"><span class="item-name">ЗАПЕЧЕНЫЙ КАРТОФЕЛЬ С КУРИЦЕЙ</span></label>
+        <div class="item-detail">
+          <img src="images/baked_potato_chicken.jpg" alt="ЗАПЕЧЕНЫЙ КАРТОФЕЛЬ С КУРИЦЕЙ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Аппетитный запечённый картофель с куриным филе и специями</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Картофель, куриное филе, розмарин, чеснок, оливковое масло</span></div>
+        </div>
+      </div>
 
-      catDiv.appendChild(itemsList);
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-08">
+        <label class="item-label" for="i-h-08"><span class="item-name">ГУЛЯШ</span></label>
+        <div class="item-detail">
+          <img src="images/goulash.jpg" alt="ГУЛЯШ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Классический венгерский гуляш из тушёной говядины</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Говядина, лук, томатная паста, паприка, чеснок, специи</span></div>
+        </div>
+      </div>
 
-      // Category toggle click
-      catBtn.addEventListener('click', () => {
-        const isOpen = itemsList.classList.contains('open');
-        const icon = document.getElementById(`icon-${cat.id}`);
-        itemsList.classList.toggle('open', !isOpen);
-        icon.classList.toggle('open', !isOpen);
-        if (isOpen) {
-          // Close all items
-          itemsList.querySelectorAll('.item-detail').forEach(d => d.classList.remove('open'));
-          itemsList.querySelectorAll('.item-toggle').forEach(b => b.classList.remove('active'));
-        }
-      });
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-09">
+        <label class="item-label" for="i-h-09"><span class="item-name">ЖАРКОЕ СО СВИНИНОЙ</span></label>
+        <div class="item-detail">
+          <img src="images/pork_roast.jpg" alt="ЖАРКОЕ СО СВИНИНОЙ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Сытное домашнее жаркое с картофелем и свининой</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Свинина, картофель, лук, морковь, томатная паста, лавровый лист</span></div>
+        </div>
+      </div>
 
-      root.appendChild(catDiv);
-    });
-  </script>
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-10">
+        <label class="item-label" for="i-h-10"><span class="item-name">ЖУЛЬЕН</span></label>
+        <div class="item-detail">
+          <img src="images/julien.jpg" alt="ЖУЛЬЕН" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Классический жульен с грибами в сливочном соусе</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Шампиньоны, лук, сливки, сыр, масло, мускатный орех</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-11">
+        <label class="item-label" for="i-h-11"><span class="item-name">ГРЕЧКА С ОВОЩАМИ И КУРИЦЕЙ</span></label>
+        <div class="item-detail">
+          <img src="images/buckwheat_chicken.jpg" alt="ГРЕЧКА С ОВОЩАМИ И КУРИЦЕЙ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Полезная гречка с куриным филе и сезонными овощами</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Гречка, куриное филе, морковь, лук, перец, зелень</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-12">
+        <label class="item-label" for="i-h-12"><span class="item-name">КУРИНАЯ ГРУДКА В КЛЯРЕ</span></label>
+        <div class="item-detail">
+          <img src="images/chicken_batter.jpg" alt="КУРИНАЯ ГРУДКА В КЛЯРЕ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Хрустящая куриная грудка в золотистом кляре</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Куриная грудка, яйца, мука, панировочные сухари, специи</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-13">
+        <label class="item-label" for="i-h-13"><span class="item-name">ОХОТНИЧЬИ КОЛБАСКИ С КАРТОФЕЛЕМ</span></label>
+        <div class="item-detail">
+          <img src="images/hunter_sausages.jpg" alt="ОХОТНИЧЬИ КОЛБАСКИ С КАРТОФЕЛЕМ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Сочные охотничьи колбаски с запечённым картофелем</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Охотничьи колбаски, картофель, горчица, розмарин, масло</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-14">
+        <label class="item-label" for="i-h-14"><span class="item-name">РУБЛЕННЫЕ КОТЛЕТЫ</span></label>
+        <div class="item-detail">
+          <img src="images/chopped_cutlets.jpg" alt="РУБЛЕННЫЕ КОТЛЕТЫ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Сочные котлеты из рубленого мяса с зеленью</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Говядина, лук, яйца, зелень, специи, панировочные сухари</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-15">
+        <label class="item-label" for="i-h-15"><span class="item-name">КОНВЕРТИКИ ИЗ ФАРША С СЫРОМ</span></label>
+        <div class="item-detail">
+          <img src="images/meat_envelopes.jpg" alt="КОНВЕРТИКИ ИЗ ФАРША С СЫРОМ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Хрустящие конвертики из теста с сырно-мясной начинкой</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Фарш, сыр, тесто слоёное, лук, чеснок, специи</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-16">
+        <label class="item-label" for="i-h-16"><span class="item-name">КУРИНЫЕ КОТЛЕТЫ</span></label>
+        <div class="item-detail">
+          <img src="images/chicken_cutlets.jpg" alt="КУРИНЫЕ КОТЛЕТЫ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Нежные куриные котлеты из рубленого филе</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Куриное филе, лук, яйца, хлеб, сметана, специи</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-17">
+        <label class="item-label" for="i-h-17"><span class="item-name">ЗАПЕЧЕНАЯ КАРТОШКА С БЕКОНОМ</span></label>
+        <div class="item-detail">
+          <img src="images/bacon_potato.jpg" alt="ЗАПЕЧЕНАЯ КАРТОШКА С БЕКОНОМ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Ароматная картошка запечённая с хрустящим беконом</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Картофель, бекон, чеснок, розмарин, оливковое масло, сыр</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-18">
+        <label class="item-label" for="i-h-18"><span class="item-name">КУСКУС С ТУНЦОМ</span></label>
+        <div class="item-detail">
+          <img src="images/couscous_tuna.jpg" alt="КУСКУС С ТУНЦОМ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Лёгкий средиземноморский кускус с тунцом и овощами</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Кускус, тунец, помидоры, огурцы, зелень, оливковое масло, лимон</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-19">
+        <label class="item-label" for="i-h-19"><span class="item-name">КИШ С НАЧИНКАМИ</span></label>
+        <div class="item-detail">
+          <img src="images/quiche.jpg" alt="КИШ С НАЧИНКАМИ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Французский открытый пирог с разнообразными начинками</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Тесто песочное, яйца, сливки, сыр, начинка на выбор</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-h-20">
+        <label class="item-label" for="i-h-20"><span class="item-name">НЬОКИ С БЕКОНОМ</span></label>
+        <div class="item-detail">
+          <img src="images/gnocchi_bacon.jpg" alt="НЬОКИ С БЕКОНОМ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Итальянские картофельные клёцки с хрустящим беконом</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Ньоки, бекон, сливки, пармезан, чеснок, тимьян</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== ПАСТА ===== -->
+  <div class="category">
+    <input type="checkbox" class="cat-toggle" id="cat-pasta">
+    <label class="cat-label" for="cat-pasta">
+      <span class="cat-title">ПАСТА</span>
+      <span class="cat-icon">+</span>
+    </label>
+    <div class="items-list">
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-p-01">
+        <label class="item-label" for="i-p-01"><span class="item-name">ПАСТА С КУРИЦЕЙ И ГРИБАМИ</span></label>
+        <div class="item-detail">
+          <img src="images/pasta_chicken_mushroom.jpg" alt="ПАСТА С КУРИЦЕЙ И ГРИБАМИ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Кремовая паста с сочной курицей и ароматными грибами</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Паста, куриное филе, шампиньоны, сливки, чеснок, пармезан</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-p-02">
+        <label class="item-label" for="i-p-02"><span class="item-name">ПАСТА С КУРИЦЕЙ И КУКУРУЗОЙ</span></label>
+        <div class="item-detail">
+          <img src="images/pasta_chicken_corn.jpg" alt="ПАСТА С КУРИЦЕЙ И КУКУРУЗОЙ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Нежная паста с куриным филе и сладкой кукурузой</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Паста, курица, кукуруза, сливочный соус, зелень, специи</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-p-03">
+        <label class="item-label" for="i-p-03"><span class="item-name">ПАСТА С ФАРШЕМ В ТОМАТНОМ СОУСЕ</span></label>
+        <div class="item-detail">
+          <img src="images/bolognese.jpg" alt="ПАСТА С ФАРШЕМ В ТОМАТНОМ СОУСЕ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Классическая паста болоньезе с насыщенным томатным соусом</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Паста, говяжий фарш, помидоры, лук, чеснок, базилик</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-p-04">
+        <label class="item-label" for="i-p-04"><span class="item-name">ПО-ФЛОТСКИ</span></label>
+        <div class="item-detail">
+          <img src="images/navy_pasta.jpg" alt="ПО-ФЛОТСКИ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Традиционная советская паста с обжаренным мясным фаршем</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Рожки, говяжий фарш, лук, масло, соль, перец</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-p-05">
+        <label class="item-label" for="i-p-05"><span class="item-name">КАРБОНАРА</span></label>
+        <div class="item-detail">
+          <img src="images/carbonara.jpg" alt="КАРБОНАРА" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Классическая итальянская карбонара с яичным соусом</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Спагетти, бекон/гуанчале, яйца, пармезан, чёрный перец</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-p-06">
+        <label class="item-label" for="i-p-06"><span class="item-name">ПТИТИМ СО ШПИНАТОМ В СЛИВКАХ</span></label>
+        <div class="item-detail">
+          <img src="images/ptitim_spinach.jpg" alt="ПТИТИМ СО ШПИНАТОМ В СЛИВКАХ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Израильский птитим с нежным шпинатом в сливочном соусе</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Птитим, шпинат, сливки, чеснок, пармезан, мускатный орех</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-p-07">
+        <label class="item-label" for="i-p-07"><span class="item-name">ПАСТА С СОСИСКАМИ В СЫРНОМ СОУСЕ</span></label>
+        <div class="item-detail">
+          <img src="images/pasta_sausage_cheese.jpg" alt="ПАСТА С СОСИСКАМИ В СЫРНОМ СОУСЕ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Сытная паста с сосисками в тянущемся сырном соусе</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Паста, сосиски, плавленый сыр, молоко, чеснок, специи</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-p-08">
+        <label class="item-label" for="i-p-08"><span class="item-name">ПАСТА С ТУНЦОМ</span></label>
+        <div class="item-detail">
+          <img src="images/pasta_tuna.jpg" alt="ПАСТА С ТУНЦОМ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Средиземноморская паста с тунцом и каперсами</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Паста, тунец, каперсы, оливки, помидоры, оливковое масло, чеснок</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-p-09">
+        <label class="item-label" for="i-p-09"><span class="item-name">ПТИТИМ С КУРИЦЕЙ</span></label>
+        <div class="item-detail">
+          <img src="images/ptitim_chicken.jpg" alt="ПТИТИМ С КУРИЦЕЙ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Сочный птитим с запечённым куриным филе и специями</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Птитим, куриное филе, лук, чеснок, специи, зелень</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-p-10">
+        <label class="item-label" for="i-p-10"><span class="item-name">ПАСТА В СЫРНО-ТОМАТНОМ СОУСЕ</span></label>
+        <div class="item-detail">
+          <img src="images/pasta_cheese_tomato.jpg" alt="ПАСТА В СЫРНО-ТОМАТНОМ СОУСЕ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Насыщенная паста в двойном сырно-томатном соусе</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Паста, помидоры, сыр, сливки, чеснок, базилик, орегано</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== ГАРНИР ===== -->
+  <div class="category">
+    <input type="checkbox" class="cat-toggle" id="cat-garnish">
+    <label class="cat-label" for="cat-garnish">
+      <span class="cat-title">ГАРНИР</span>
+      <span class="cat-icon">+</span>
+    </label>
+    <div class="items-list">
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-g-01">
+        <label class="item-label" for="i-g-01"><span class="item-name">ЗАПЕЧЕНЫЙ КАРТОФЕЛЬ</span></label>
+        <div class="item-detail">
+          <img src="images/baked_potato.jpg" alt="ЗАПЕЧЕНЫЙ КАРТОФЕЛЬ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Золотистый картофель запечённый с розмарином и чесноком</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Картофель, оливковое масло, розмарин, чеснок, соль, перец</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-g-02">
+        <label class="item-label" for="i-g-02"><span class="item-name">ЖАРЕНЫЙ КАРТОФЕЛЬ</span></label>
+        <div class="item-detail">
+          <img src="images/fried_potato.jpg" alt="ЖАРЕНЫЙ КАРТОФЕЛЬ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Классический жареный картофель с хрустящей корочкой</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Картофель, растительное масло, лук, соль, укроп</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-g-03">
+        <label class="item-label" for="i-g-03"><span class="item-name">КАРТОФЕЛЬНОЕ ПЮРЕ</span></label>
+        <div class="item-detail">
+          <img src="images/mashed_potato.jpg" alt="КАРТОФЕЛЬНОЕ ПЮРЕ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Нежное сливочное картофельное пюре домашнего приготовления</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Картофель, сливочное масло, молоко/сливки, соль, мускатный орех</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-g-04">
+        <label class="item-label" for="i-g-04"><span class="item-name">ОВОЩНОЕ СОТЭ</span></label>
+        <div class="item-detail">
+          <img src="images/veggie_saute.jpg" alt="ОВОЩНОЕ СОТЭ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Ароматное сотэ из сезонных овощей с прованскими травами</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Кабачок, перец, баклажан, помидоры, лук, прованские травы, масло</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-g-05">
+        <label class="item-label" for="i-g-05"><span class="item-name">РИС/ГРЕЧКА</span></label>
+        <div class="item-detail">
+          <img src="images/rice_buckwheat.jpg" alt="РИС/ГРЕЧКА" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Рассыпчатый варёный рис или гречка с маслом</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Рис или гречка, вода, соль, сливочное масло</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-g-06">
+        <label class="item-label" for="i-g-06"><span class="item-name">ПАСТА</span></label>
+        <div class="item-detail">
+          <img src="images/pasta_side.jpg" alt="ПАСТА" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Отварная паста с оливковым маслом и зеленью</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Паста, оливковое масло, чеснок, петрушка, соль</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-g-07">
+        <label class="item-label" for="i-g-07"><span class="item-name">ВОК С КУРИЦЕЙ/СВИНИНОЙ</span></label>
+        <div class="item-detail">
+          <img src="images/wok.jpg" alt="ВОК С КУРИЦЕЙ/СВИНИНОЙ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Азиатский вок с мясом и хрустящими овощами</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Курица или свинина, болгарский перец, брокколи, морковь, соевый соус, имбирь</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-g-08">
+        <label class="item-label" for="i-g-08"><span class="item-name">УДОН С КУРИЦЕЙ/СВИНИНОЙ</span></label>
+        <div class="item-detail">
+          <img src="images/udon.jpg" alt="УДОН С КУРИЦЕЙ/СВИНИНОЙ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Японская лапша удон с мясом в пикантном соусе</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Удон, курица или свинина, соевый соус, кунжутное масло, зелёный лук, кунжут</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== ЗАКУСКИ ===== -->
+  <div class="category">
+    <input type="checkbox" class="cat-toggle" id="cat-snacks">
+    <label class="cat-label" for="cat-snacks">
+      <span class="cat-title">ЗАКУСКИ</span>
+      <span class="cat-icon">+</span>
+    </label>
+    <div class="items-list">
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sn-01">
+        <label class="item-label" for="i-sn-01"><span class="item-name">ТАКОС</span></label>
+        <div class="item-detail">
+          <img src="images/tacos.jpg" alt="ТАКОС" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Мексиканские тако с сочной начинкой и свежей сальсой</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Тортилья, фарш/курица, помидоры, лук, сыр, сметана, специи</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sn-02">
+        <label class="item-label" for="i-sn-02"><span class="item-name">ПИЦЦА</span></label>
+        <div class="item-detail">
+          <img src="images/pizza.jpg" alt="ПИЦЦА" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Классическая пицца на тонком тесте с томатным соусом</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Тесто, томатный соус, моцарелла, начинка на выбор, орегано</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sn-03">
+        <label class="item-label" for="i-sn-03"><span class="item-name">ЛЕПЕШКА БИГ-МАК</span></label>
+        <div class="item-detail">
+          <img src="images/bigmac_flatbread.jpg" alt="ЛЕПЕШКА БИГ-МАК" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Бургер-лепёшка с говяжьим фаршем и классическим соусом</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Лаваш, говяжий фарш, листья салата, помидоры, сыр, соус биг-мак</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sn-04">
+        <label class="item-label" for="i-sn-04"><span class="item-name">ШАУРМА</span></label>
+        <div class="item-detail">
+          <img src="images/shawarma.jpg" alt="ШАУРМА" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Сочная шаурма с курицей и свежими овощами в лаваше</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Лаваш, курица, капуста, помидоры, огурцы, соус, специи</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sn-05">
+        <label class="item-label" for="i-sn-05"><span class="item-name">КАНАПЕ С ВЕТЧИНОЙ И СЫРОМ</span></label>
+        <div class="item-detail">
+          <img src="images/canape_ham.jpg" alt="КАНАПЕ С ВЕТЧИНОЙ И СЫРОМ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Изысканные канапе с нежной ветчиной и сыром</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Хлеб, ветчина, сыр, зелень, горчица или майонез</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sn-06">
+        <label class="item-label" for="i-sn-06"><span class="item-name">КАНАПЕ С КУРИЦЕЙ И ГРИБАМИ</span></label>
+        <div class="item-detail">
+          <img src="images/canape_chicken.jpg" alt="КАНАПЕ С КУРИЦЕЙ И ГРИБАМИ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Ароматные канапе с куриным филе и грибами</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Хлеб, куриное филе, шампиньоны, сыр, зелень, соус</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sn-07">
+        <label class="item-label" for="i-sn-07"><span class="item-name">КАНАПЕ КУРИЦА И 4 СЫРА</span></label>
+        <div class="item-detail">
+          <img src="images/canape_4cheese.jpg" alt="КАНАПЕ КУРИЦА И 4 СЫРА" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Изысканные канапе с курицей и смесью четырёх сыров</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Хлеб, курица, моцарелла, пармезан, гауда, дор блю</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sn-08">
+        <label class="item-label" for="i-sn-08"><span class="item-name">БРУСКЕТТА С ЛОСОСЕМ/ГОВЯДИНОЙ</span></label>
+        <div class="item-detail">
+          <img src="images/bruschetta.jpg" alt="БРУСКЕТТА С ЛОСОСЕМ/ГОВЯДИНОЙ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Итальянские брускетты с лососем или говядиной на гриле</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Чиабатта, лосось или говядина, помидоры, руккола, оливковое масло, каперсы</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sn-09">
+        <label class="item-label" for="i-sn-09"><span class="item-name">ГОРЯЧИЕ БУТЕРБРОДЫ</span></label>
+        <div class="item-detail">
+          <img src="images/hot_sandwich.jpg" alt="ГОРЯЧИЕ БУТЕРБРОДЫ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Горячие бутерброды с сыром и начинкой на выбор</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Хлеб, сыр, ветчина или курица, томаты, масло, специи</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sn-10">
+        <label class="item-label" for="i-sn-10"><span class="item-name">СЕНДВИЧ КЛАССИЧЕСКИЙ/ГОРЯЧИЙ/С ТУНЦОМ</span></label>
+        <div class="item-detail">
+          <img src="images/sandwich.jpg" alt="СЕНДВИЧ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Сэндвич в трёх вариантах: классический, горячий или с тунцом</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Хлеб, начинка (ветчина/курица/тунец), листья салата, помидоры, соус</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sn-11">
+        <label class="item-label" for="i-sn-11"><span class="item-name">КУРИНЫЕ СТРИПСЫ/ПОПКОРН</span></label>
+        <div class="item-detail">
+          <img src="images/chicken_strips.jpg" alt="КУРИНЫЕ СТРИПСЫ/ПОПКОРН" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Хрустящие куриные кусочки в золотистой панировке</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Куриное филе, яйца, панировочные сухари, специи, масло для жарки</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sn-12">
+        <label class="item-label" for="i-sn-12"><span class="item-name">ХОТ-ДОГИ КЛАССИЧЕСКИЕ/С КУКУРУЗОЙ</span></label>
+        <div class="item-detail">
+          <img src="images/hotdog.jpg" alt="ХОТ-ДОГИ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Классические хот-доги или в кукурузном тесте</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Сосиска, булочка, горчица, кетчуп, лук, кукурузное тесто (опц.)</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sn-13">
+        <label class="item-label" for="i-sn-13"><span class="item-name">СУШИ-ТОРТ</span></label>
+        <div class="item-detail">
+          <img src="images/sushi_cake.jpg" alt="СУШИ-ТОРТ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Торт в стиле суши с рисом, рыбой и авокадо</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Рис, лосось, авокадо, огурцы, нори, сливочный сыр, кунжут</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sn-14">
+        <label class="item-label" for="i-sn-14"><span class="item-name">СУШИ ШАРИКИ</span></label>
+        <div class="item-detail">
+          <img src="images/sushi_balls.jpg" alt="СУШИ ШАРИКИ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Компактные шарики суши с различными начинками</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Рис для суши, лосось/тунец, авокадо, нори, кунжут, соевый соус</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sn-15">
+        <label class="item-label" for="i-sn-15"><span class="item-name">ПАШТЕТ</span></label>
+        <div class="item-detail">
+          <img src="images/pate.jpg" alt="ПАШТЕТ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Нежный домашний паштет из куриной печени с травами</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Куриная печень, сливочное масло, лук, коньяк, тимьян, специи</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== СОУСЫ ===== -->
+  <div class="category">
+    <input type="checkbox" class="cat-toggle" id="cat-sauces">
+    <label class="cat-label" for="cat-sauces">
+      <span class="cat-title">СОУСЫ</span>
+      <span class="cat-icon">+</span>
+    </label>
+    <div class="items-list">
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sc-01">
+        <label class="item-label" for="i-sc-01"><span class="item-name">ЦЕЗАРЬ</span></label>
+        <div class="item-detail">
+          <img src="images/sauce_caesar.jpg" alt="ЦЕЗАРЬ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Классический сливочный соус цезарь с анчоусами</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Анчоусы, чеснок, лимонный сок, пармезан, яичный желток, масло, горчица</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sc-02">
+        <label class="item-label" for="i-sc-02"><span class="item-name">ЧЕСНОЧНЫЙ</span></label>
+        <div class="item-detail">
+          <img src="images/sauce_garlic.jpg" alt="ЧЕСНОЧНЫЙ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Насыщенный чесночный соус на основе сметаны</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Сметана или майонез, чеснок, укроп, соль, лимонный сок</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sc-03">
+        <label class="item-label" for="i-sc-03"><span class="item-name">КАРТОФЕЛЬНЫЙ</span></label>
+        <div class="item-detail">
+          <img src="images/sauce_potato.jpg" alt="КАРТОФЕЛЬНЫЙ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Необычный пикантный соус на основе картофеля</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Картофель, чеснок, оливковое масло, лимон, специи, зелень</span></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <input type="checkbox" class="item-toggle" id="i-sc-04">
+        <label class="item-label" for="i-sc-04"><span class="item-name">РАНЧ</span></label>
+        <div class="item-detail">
+          <img src="images/sauce_ranch.jpg" alt="РАНЧ" />
+          <div class="field-desc"><span class="field-label">ОПИСАНИЕ</span><span class="field-text-desc">Американский соус ранч с пахтой и травами</span></div>
+          <div><span class="field-label">ИНГРЕДИЕНТЫ</span><span class="field-text-ing">Пахта, майонез, сметана, укроп, петрушка, чеснок, лук, специи</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
 </body>
 </html>
